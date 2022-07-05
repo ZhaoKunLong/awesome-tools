@@ -1,13 +1,13 @@
 #!/bin/bash
-echo $1
+echo 请输入图片路径
+read image_path
 i=1
-for file in $(ls $1)
+for file in $(ls $image_path); 
   do
-  echo $i:
-  h="$1/$file"
+  h="$image_path/$file"
   echo $h
-  ffmpeg -i $h -filter:v "crop=900:1600:45:0" "$1/$i-$file"
+  ffmpeg -i $h -filter:v "crop=900:1600:45:0" "$image_path/$i-$file"
   rm $h
-  ((i++))
+  $(($i++))
 done
-echo "done - $1"
+echo "done - $image_path"
